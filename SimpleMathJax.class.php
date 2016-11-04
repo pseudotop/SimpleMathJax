@@ -13,11 +13,17 @@ class SimpleMathJax {
 	}
 	
 	static function loadJS(&$out, &$skin ) {
+                global $wgSimpleMathJaxLocConf;
 		global $wgSimpleMathJaxSize;
+                global $IP;
 		$out->addScript( "<style>.MathJax_Display{display:inline !important;}
-.mathjax-wrapper{font-size:${wgSimpleMathJaxSize}%;}</style>
-<script type='text/x-mathjax-config'>MathJax.Hub.Config({displayAlign:'left',tex2jax:{displayMath:[['[math]','[/math]']]}})</script>
-<script src='//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>" );
+.mathjax-wrapper{font-size:${wgSimpleMathJaxSize}%;}</style>");
+                if (!$wgSimpleMathJaxLocConf){
+                    $out->addScript("<script type='text/x-mathjax-config'>MathJax.Hub.Config({displayAlign:'left',tex2jax:{displayMath:[['[math]','[/math]']]}})</script>");
+                } else {
+                    $out->addScript( "<script type='text/x-mathjax-config'>" . file_get_contents("$IP/extensions/SimpleMathJax/mwMathJaxConfig.js") . "</script>" );
+                }
+                $out->addScript("<script src='//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full'></script>" );
 		return true;
 	}
 }
