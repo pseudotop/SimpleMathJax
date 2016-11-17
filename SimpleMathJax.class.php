@@ -23,7 +23,8 @@ class SimpleMathJax {
                 } else {
                     $out->addScript( "<script type='text/x-mathjax-config'>" . file_get_contents("$IP/extensions/SimpleMathJax/mwMathJaxConfig.js") . "</script>" );
                 }
-                $out->addScript("<script src='//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full'></script>" );
+                #$out->addScript("<script src='//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full'></script>" );
+                $out->addScript("<script src='//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_SVG-full'></script>" );
 		return true;
 	}
 }
